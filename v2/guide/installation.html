@@ -114,6 +114,14 @@
         <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
       </ul>
     </li>
+    <li><h4>Công cụ</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
     <li><h4>Thư viện chính thức</h4></li>
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
@@ -203,6 +211,14 @@
     <li>
       <ul>
         <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Vue Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
+    <li><h4>Công cụ</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
         <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
         <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
       </ul>
@@ -847,10 +863,10 @@
 <h2 id="Dung-the-lt-script-gt-truc-tiep"><a href="#Dung-the-lt-script-gt-truc-tiep" class="headerlink" title="Dùng thẻ &lt;script&gt; trực tiếp"></a>Dùng thẻ <code>&lt;script&gt;</code> trực tiếp</h2><p>Chỉ cần tải file thư viện về rồi sử dụng nó trong thẻ script. <code>Vue</code> sẽ được đăng ký thành một biến toàn cục.</p>
 <p class="tip">Nếu đang phát triển ứng dụng, đừng dùng bản rút gọn vì bạn sẽ không thấy cảnh báo về những lỗi thường gặp.</p>
 
-<div id="downloads"><br><a class="button" href="/js/vue.js" download="">Bản development</a><span class="light info">Với đầy đủ cảnh báo và chế độ debug</span><br><br><a class="button" href="/js/vue.min.js" download="">Bản production</a><span class="light info">Không có các cảnh báo, 29.40KB min+gzip</span><br></div>
+<div id="downloads"><br><a class="button" href="/js/vue.js" download="">Bản development</a><span class="light info">Với đầy đủ cảnh báo và chế độ debug</span><br><br><a class="button" href="/js/vue.min.js" download="">Bản production</a><span class="light info">Không có các cảnh báo, 30.33KB min+gzip</span><br></div>
 
 <h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>Nên dùng: <a href="https://cdn.jsdelivr.net/npm/vue" target="_blank" rel="external">https://cdn.jsdelivr.net/npm/vue</a>, nó sẽ trỏ tới bản mới nhất của Vue trên npm. Bạn có thể xem mã nguồn của package trên npm tại <a href="https://cdn.jsdelivr.net/npm/vue/" target="_blank" rel="external">https://cdn.jsdelivr.net/npm/vue/</a>.</p>
-<p>Ngoài ra, bạn cũng có thể sử dụng <a href="https://unpkg.com/vue" target="_blank" rel="external">unpkg</a> hoặc <a href="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.4/vue.js" target="_blank" rel="external">cdnjs</a> (cdnjs cần nhiều thời gian để đồng bộ nên có thể nó chưa phải phiên bản mới nhất).</p>
+<p>Ngoài ra, bạn cũng có thể sử dụng <a href="https://unpkg.com/vue" target="_blank" rel="external">unpkg</a> hoặc <a href="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.1/vue.js" target="_blank" rel="external">cdnjs</a> (cdnjs cần nhiều thời gian để đồng bộ nên có thể nó chưa phải phiên bản mới nhất).</p>
 <h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><p>Chúng tôi khuyên bạn nên sử dụng NPM khi muốn xây dựng một ứng dụng lớn với Vue. NPM hoạt động rất tốt với các module bundler (các công cụ đóng gói module) như <a href="https://webpack.js.org/" target="_blank" rel="external">Webpack</a> hoặc <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>. Vue cũng cung cấp công cụ hỗ trợ để viết các <a href="single-file-components.html">single file component</a>.</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment"># latest stable</span></div><div class="line">$ npm install vue</div></pre></td></tr></table></figure>
 <h2 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h2><p>Vue.js cung cấp một <a href="https://github.com/vuejs/vue-cli" target="_blank" rel="external">CLI</a> giúp nhanh chóng khởi tạo nền tảng (scaffolding) cho các ứng dụng một trang. Vue-CLI chuẩn bị sẵn các cài đặt phong phú cho một quy trình front-end hiện đại. Chỉ mất vài phút, bạn đã có thể bắt đầu xây dựng ứng dụng với các tính năng như hot-reload, tinh chỉnh code khi save (lint-on-save), và các bản build sẵn sàng để deploy lên production:</p>

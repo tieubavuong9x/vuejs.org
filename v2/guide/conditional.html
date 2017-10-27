@@ -114,6 +114,14 @@
         <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
       </ul>
     </li>
+    <li><h4>Công cụ</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
     <li><h4>Thư viện chính thức</h4></li>
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
@@ -203,6 +211,14 @@
     <li>
       <ul>
         <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Vue Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
+    <li><h4>Công cụ</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
         <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
         <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
       </ul>
@@ -924,7 +940,7 @@ new Vue({
 <h2 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h2><p>Một lựa chọn nữa cho việc hiện hoặc ẩn một phần tử web theo điều kiện là directive <code>v-show</code>. Cách dùng <code>v-show</code> cũng tương tự với <code>v-if</code>:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-show</span>=<span class="string">"ok"</span>&gt;</span>Xin chào!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Điểm khác biệt giữa <code>v-show</code> và <code>v-if</code> là phần tử được đánh dấu với <code>v-show</code> sẽ luôn luôn được render và chứa trong DOM; <code>v-show</code> chỉ bật tắt thuộc tính <code>display</code> của phần tử này.</p>
-<p class="tip"><code>v-show</code> không hỗ trợ cú pháp <code>&lt;template&gt;</code> và cũng không hoạt động với <code>v-else</code>.</p>
+<p class="tip"><code>v-show</code> không hỗ trợ thẻ <code>&lt;template&gt;</code> và cũng không hoạt động với <code>v-else</code>.</p>
 
 <h2 id="v-if-va-v-show-–-khi-nao-thi-dung-gi"><a href="#v-if-va-v-show-–-khi-nao-thi-dung-gi" class="headerlink" title="v-if và v-show – khi nào thì dùng gì"></a><code>v-if</code> và <code>v-show</code> – khi nào thì dùng gì</h2><p><code>v-if</code> là render theo điều kiện “thật sự,” vì nó bảo đảm các event listener và component con bên trong khối điều kiện được hủy và khởi tạo lại trong quá trình bật/tắt.</p>
 <p><code>v-if</code> cũng <strong>lười biếng</strong> (lazy): nếu giá trị của điều kiện là <code>false</code> trong lần render đầu tiên, nó sẽ không làm gì cả - khối điều kiện sẽ không được render cho đến khi điều kiện trở thành <code>true</code> lần đầu tiên.</p>

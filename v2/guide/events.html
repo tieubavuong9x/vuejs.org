@@ -114,6 +114,14 @@
         <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
       </ul>
     </li>
+    <li><h4>Công cụ</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
     <li><h4>Thư viện chính thức</h4></li>
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
@@ -203,6 +211,14 @@
     <li>
       <ul>
         <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Vue Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
+    <li><h4>Công cụ</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
         <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
         <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
       </ul>
@@ -920,7 +936,7 @@ new Vue({
 <li><code>.self</code></li>
 <li><code>.once</code></li>
 </ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- </span></div><div class="line"><span class="comment">  sự kiện click sẽ không được propagate (lan truyền) </span></div><div class="line"><span class="comment">  điều này tương đương với event.stopPropagation()</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- </span></div><div class="line"><span class="comment">  sự kiện submit sẽ không reload trang </span></div><div class="line"><span class="comment">  điều này tương đương với event.preventDefault()</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"onSubmit"</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- ta có thể nối modifier với nhau --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop.prevent</span>=<span class="string">"doThat"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- chỉ có modifier, không có phương thức xử lí --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- </span></div><div class="line"><span class="comment">  dùng "capture mode" khi thêm event listener</span></div><div class="line"><span class="comment">  nghĩa là một sự kiện xảy ra với một phần tử bên trong sẽ được xử lí ở đây </span></div><div class="line"><span class="comment">  trước khi được xử lí bởi phần tử đó</span></div><div class="line"><span class="comment">  đọc thêm về event capturing: https://javascript.info/bubbling-and-capturing#capturing</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.capture</span>=<span class="string">"doThis"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- </span></div><div class="line"><span class="comment">  chỉ kích hoạt phương thức xử lí nếu event.target là chính phần tử được click,</span></div><div class="line"><span class="comment">  chứ không phải là một phần tử con</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.self</span>=<span class="string">"doThat"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!--</span></div><div class="line"><span class="comment">  sự kiện click sẽ không được propagate (lan truyền)</span></div><div class="line"><span class="comment">  điều này tương đương với event.stopPropagation()</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop</span>=<span class="string">"doThis"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--</span></div><div class="line"><span class="comment">  sự kiện submit sẽ không reload trang</span></div><div class="line"><span class="comment">  điều này tương đương với event.preventDefault()</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">"onSubmit"</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- ta có thể nối modifier với nhau --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click.stop.prevent</span>=<span class="string">"doThat"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- chỉ có modifier, không có phương thức xử lí --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--</span></div><div class="line"><span class="comment">  dùng "capture mode" khi thêm event listener</span></div><div class="line"><span class="comment">  nghĩa là một sự kiện xảy ra với một phần tử bên trong sẽ được xử lí ở đây</span></div><div class="line"><span class="comment">  trước khi được xử lí bởi phần tử đó</span></div><div class="line"><span class="comment">  đọc thêm về event capturing: https://javascript.info/bubbling-and-capturing#capturing</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.capture</span>=<span class="string">"doThis"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!--</span></div><div class="line"><span class="comment">  chỉ kích hoạt phương thức xử lí nếu event.target là chính phần tử được click,</span></div><div class="line"><span class="comment">  chứ không phải là một phần tử con</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-on:click.self</span>=<span class="string">"doThat"</span>&gt;</span>...<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p class="tip">Khi sử dụng nhiều modifier cùng lúc, thứ tự nối là rất quan trọng, vì code sẽ được tạo ra theo đúng thứ tự đó. Ví dụ, <code>@click.prevent.self</code> sẽ ngăn <strong>toàn bộ click</strong> còn <code>@click.self.prevent</code> chỉ ngăn các click trên chính phần tử đang được nhắc đến.</p>
 
 <blockquote>
@@ -946,7 +962,15 @@ new Vue({
 </ul>
 <p>Bạn cũng có thể <a href="../api/#keyCodes">tự định nghĩa alias cho key modifier</a> bằng object toàn cục <code>config.keyCodes</code>:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// cho phép sử dụng v-on:keyup.f1</span></div><div class="line">Vue.config.keyCodes.f1 = <span class="number">112</span></div></pre></td></tr></table></figure>
-<h2 id="Cac-phim-modifier"><a href="#Cac-phim-modifier" class="headerlink" title="Các phím modifier"></a>Các phím modifier</h2><blockquote>
+<h3 id="Key-modifier-tu-dong"><a href="#Key-modifier-tu-dong" class="headerlink" title="Key modifier tự động"></a>Key modifier tự động</h3><blockquote>
+<p>2.5.0+</p>
+</blockquote>
+<p>Bạn cũng có thể sử dụng bất kì <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values" target="_blank" rel="external">tên phím hợp lệ</a> nào để làm modifier bằng cách chuyển sang kebab-case:</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.page-down</span>=<span class="string">"onPageDown"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>Trong ví dụ trên, hàm <code>onPageDown</code> chỉ được gọi nếu <code>$event.key === &#39;PageDown&#39;</code>.</p>
+<p class="tip">Một số ít phím (<code>esc</code> và các phím mũi tên) có giá trị <code>key</code> không thống nhất trên IE9. Nếu cần hỗ trợ IE9, bạn nên dùng các alias như trên đây.</p>
+
+<h2 id="Cac-phim-modifier-he-thong"><a href="#Cac-phim-modifier-he-thong" class="headerlink" title="Các phím modifier hệ thống"></a>Các phím modifier hệ thống</h2><blockquote>
 <p>Từ phiên bản 2.1.0 trở đi</p>
 </blockquote>
 <p>Bạn có thể sử dụng các modifier sau để chỉ kích hoạt các event listener khi các phím modifier tương ứng được nhấn:</p>
@@ -963,6 +987,11 @@ new Vue({
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Alt + C --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> @<span class="attr">keyup.alt.67</span>=<span class="string">"clear"</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- Cmd + Click --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> @<span class="attr">click.meta</span>=<span class="string">"openNewTab"</span>&gt;</span>Mở tab mới<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p class="tip">Các phím modifier có cách hoạt động khác với phím thông thường, và khi dùng với sự kiện <code>keyup</code>, phím modifier phải được nhấn khi sự kiện được phát ra. Nói một cách khác, <code>keyup.ctrl</code> sẽ chỉ được kích hoạt khi bạn thả một phím khi vẫn đang ấn phím <code>ctrl</code>. Sự kiện này sẽ không được kích hoạt nếu bạn chỉ thả một mình phím <code>ctrl</code>.</p>
 
+<h3 id="Modifier-exact"><a href="#Modifier-exact" class="headerlink" title="Modifier .exact"></a>Modifier <code>.exact</code></h3><blockquote>
+<p>2.5.0+</p>
+</blockquote>
+<p>Modifier <code>.exact</code> (chính xác) có thể được sử dụng kết hợp với các modifier khác để chỉ rõ rằng hàm xử lí sự kiện chỉ nên được thực thi khi <em>chính xác</em> tổ hợp phím/chuột đó được bấm.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="comment">&lt;!-- onClick vẫn sẽ được gọi nếu người dùng nhấn thêm phím Alt hoặc Shift --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.ctrl</span>=<span class="string">"onClick"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- onClick chỉ được gọi nếu chỉ phím Ctrl được nhấn --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.ctrl.exact</span>=<span class="string">"onCtrlClick"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div></pre></td></tr></table></figure>
 <h3 id="Modifier-cho-phim-chuot"><a href="#Modifier-cho-phim-chuot" class="headerlink" title="Modifier cho phím chuột"></a>Modifier cho phím chuột</h3><blockquote>
 <p>Từ phiên bản 2.2.0 trở đi</p>
 </blockquote>

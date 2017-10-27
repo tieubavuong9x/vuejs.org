@@ -1095,6 +1095,7 @@ ul.demo li {
   background-color: #eee;
 }
 .style-guide details {
+  display: block;
   position: relative;
 }
 .style-guide details:not([open]) summary::after {

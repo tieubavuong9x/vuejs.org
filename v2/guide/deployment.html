@@ -114,6 +114,14 @@
         <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
       </ul>
     </li>
+    <li><h4>Công cụ</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
     <li><h4>Thư viện chính thức</h4></li>
     <li><ul>
       <li><a href="https://router.vuejs.org/" class="nav-link" target="_blank">Vue Router</a></li>
@@ -203,6 +211,14 @@
     <li>
       <ul>
         <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Vue Devtools</a></li>
+        <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
+        <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
+      </ul>
+    </li>
+    <li><h4>Công cụ</h4></li>
+    <li>
+      <ul>
+        <li><a href="https://github.com/vuejs/vue-devtools" class="nav-link" target="_blank">Devtools</a></li>
         <li><a href="https://vuejs-templates.github.io/webpack" class="nav-link" target="_blank">Webpack Template</a></li>
         <li><a href="https://vue-loader.vuejs.org" class="nav-link" target="_blank">Vue Loader</a></li>
       </ul>
@@ -851,6 +867,9 @@
 </li>
 <li><p>Áp dụng <a href="https://github.com/hughsk/envify" target="_blank" rel="external">envify</a> ở cấp global (toàn cục) cho bundle. Cách này sẽ giúp plugin minify lược đi toàn bộ những cảnh báo trong mã nguồn của Vue được gói trong các conditional block (khối điều kiện) dùng để kiểm tra biến môi trường. Ví dụ:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m &gt; build.js</div></pre></td></tr></table></figure>
+</li>
+<li><p>Hoặc, khi dùng <a href="https://github.com/hughsk/envify" target="_blank" rel="external">envify</a> với Gulp:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// dùng module envify/custom để chỉ định biến môi trường</span></div><div class="line"><span class="keyword">var</span> envify = <span class="built_in">require</span>(<span class="string">'envify/custom'</span>)</div><div class="line"></div><div class="line">browserify(browserifyOptions)</div><div class="line">  .transform(vueify),</div><div class="line">  .transform(</div><div class="line">    <span class="comment">// cần thiết để xử lí các file trong node_modules</span></div><div class="line">    &#123; <span class="attr">global</span>: <span class="literal">true</span> &#125;,</div><div class="line">    envify(&#123; <span class="attr">NODE_ENV</span>: <span class="string">'production'</span> &#125;)</div><div class="line">  )</div><div class="line">  .bundle()</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h4 id="Rollup"><a href="#Rollup" class="headerlink" title="Rollup"></a>Rollup</h4><p>Dùng <a href="https://github.com/rollup/rollup-plugin-replace" target="_blank" rel="external">rollup-plugin-replace</a>:</p>
