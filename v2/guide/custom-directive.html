@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="vi">
   <head>
-    <title>Custom Directives — Vue.js</title>
+    <title>Directive tùy biến — Vue.js</title>
     <meta charset="utf-8">
     <meta name="description" content="Vue.js - Framework JavaScript linh động">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -17,12 +17,12 @@
     <link rel="alternate" hreflang="fr" href="https://fr.vuejs.org/v2/guide/custom-directive.html">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Custom Directives — Vue.js">
+    <meta property="og:title" content="Directive tùy biến — Vue.js">
     <meta property="og:description" content="Vue.js - Framework JavaScript linh động">
     <meta property="og:image" content="https://vi.vuejs.org//images/logo.png">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Custom Directives — Vue.js">
+    <meta name="twitter:title" content="Directive tùy biến — Vue.js">
     <meta name="twitter:description" content="Vue.js - Framework JavaScript linh động">
     <meta name="twitter:image" content="https://vi.vuejs.org/images/logo.png">
 
@@ -481,7 +481,7 @@
     
     
     <li>
-      <a href="/v2/guide/transitioning-state.html" class="sidebar-link">State Transitions</a>
+      <a href="/v2/guide/transitioning-state.html" class="sidebar-link">Transition cho trạng thái</a>
     </li>
   
     
@@ -513,7 +513,7 @@
     
     
     <li>
-      <a href="/v2/guide/custom-directive.html" class="sidebar-link current">Custom Directives</a>
+      <a href="/v2/guide/custom-directive.html" class="sidebar-link current">Directive tùy biến</a>
     </li>
   
     
@@ -760,9 +760,9 @@
     
   
   
-    <h1>Custom Directives</h1>
+    <h1>Directive tùy biến</h1>
   
-  <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p>In addition to the default set of directives shipped in core (<code>v-model</code> and <code>v-show</code>), Vue also allows you to register your own custom directives. Note that in Vue 2.0, the primary form of code reuse and abstraction is components - however there may be cases where you need some low-level DOM access on plain elements, and this is where custom directives would still be useful. An example would be focusing on an input element, like this one:</p>
+  <h2 id="Gioi-thieu"><a href="#Gioi-thieu" class="headerlink" title="Giới thiệu"></a>Giới thiệu</h2><p>Bên cạnh những directive được cung cấp mặc định (<code>v-model</code> và <code>v-show</code>), Vue cũng cho phép bạn đăng kí các directive tùy biến của riêng mình. Lưu ý là trong phiên bản Vue 2.0, cách tốt nhất để sử dụng lại và trừu tượng hóa code là dùng <a href="components.html">component</a>, tuy nhiên có thể có những lúc bạn cần một số truy xuất cấp thấp đến các phần tử web, và trong những trường hợp này thì directive tùy biến sẽ trở nên hữu ích. Ví dụ, đây là một phần tử input được focus tự động:</p>
 
 <div id="simplest-directive-example" class="demo">
   <input v-focus="">
@@ -778,46 +778,46 @@ new Vue({
 })
 </script>
 
-<p>When the page loads, that element gains focus (note: autofocus doesn’t work on mobile Safari). In fact, if you haven’t clicked on anything else since visiting this page, the input above should be focused now. Now let’s build the directive that accomplishes this:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Register a global custom directive called v-focus</span></div><div class="line">Vue.directive(<span class="string">'focus'</span>, &#123;</div><div class="line">  <span class="comment">// When the bound element is inserted into the DOM...</span></div><div class="line">  inserted: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="comment">// Focus the element</span></div><div class="line">    el.focus()</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>If you want to register a directive locally instead, components also accept a <code>directives</code> option:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">directives: &#123;</div><div class="line">  focus: &#123;</div><div class="line">    <span class="comment">// directive definition</span></div><div class="line">    inserted: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">      el.focus()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Then in a template, you can use the new <code>v-focus</code> attribute on any element, like this:</p>
+<p>Khi trang này được tải, phần tử trên đây sẽ được focus (lưu ý: tính năng focus tự động không được hỗ trợ trên mobile Safari). Nếu bạn chưa hề bấm vào bất kì đâu khác trên trang, ngay lúc này phần tử input sẽ có focus. Giờ chúng ta hãy viết directive hỗ trợ cho tính năng này:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// Đăng kí một directive tùy biến cấp toàn cục với tên là `v-focus`</span></div><div class="line">Vue.directive(<span class="string">'focus'</span>, &#123;</div><div class="line">  <span class="comment">// Khi phần tử liên quan được thêm vào DOM...</span></div><div class="line">  inserted: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">    <span class="comment">// Ta gán focus vào phần tử đó</span></div><div class="line">    el.focus()</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>Nếu muốn đăng kí directive ở cấp cục bộ thay vì toàn cục, bạn có thể dùng tùy chọn <code>directives</code> khi khai báo component:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">directives: &#123;</div><div class="line">  focus: &#123;</div><div class="line">    <span class="comment">// định nghĩa cho directive</span></div><div class="line">    inserted: <span class="function"><span class="keyword">function</span> (<span class="params">el</span>) </span>&#123;</div><div class="line">      el.focus()</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Sau đó trong template, bạn có thể dùng thuộc tính <code>v-focus</code> trên bất kì phần tử nào, như sau:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-focus</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="Hook-Functions"><a href="#Hook-Functions" class="headerlink" title="Hook Functions"></a>Hook Functions</h2><p>A directive definition object can provide several hook functions (all optional):</p>
+<h2 id="Cac-ham-hook"><a href="#Cac-ham-hook" class="headerlink" title="Các hàm hook"></a>Các hàm hook</h2><p>Một object khai báo directive có thể cung cấp một số hàm hook (tất cả các hàm này đều không bắt buộc):</p>
 <ul>
-<li><p><code>bind</code>: called only once, when the directive is first bound to the element. This is where you can do one-time setup work.</p>
+<li><p><code>bind</code>: chỉ được gọi một lần, khi directive được bind (ràng buộc) vào phần tử. Đây là nơi bạn có thể thực hiện các thao tác cài đặt một lần.</p>
 </li>
-<li><p><code>inserted</code>: called when the bound element has been inserted into its parent node (this only guarantees parent node presence, not necessarily in-document).</p>
+<li><p><code>inserted</code>: được gọi khi element đã được chèn (insert) vào phần tử cha (điều này chỉ bảo đảm là phần tử cha đã được tạo ra chứ không chắc là nó đã tồn tại trong DOM).</p>
 </li>
-<li><p><code>update</code>: called after the containing component’s VNode has updated, <strong>but possibly before its children have updated</strong>. The directive’s value may or may not have changed, but you can skip unnecessary updates by comparing the binding’s current and old values (see below on hook arguments).</p>
+<li><p><code>update</code>: được gọi sau khi VNode của phần tử chứa đã cập nhật, <strong>nhưng có thể là trước khi các phần tử con được cập nhật</strong>. Giá trị của directive lúc này có thể đã thay đổi hoặc chưa, nhưng bạn có thể bỏ qua các thay đổi không cần thiết bằng cách so sánh hai giá trị cũ và mới (xem thông tin về tham số của hàm hook ở bên dưới).</p>
 </li>
-<li><p><code>componentUpdated</code>: called after the containing component’s VNode <strong>and the VNodes of its children</strong> have updated.</p>
+<li><p><code>componentUpdated</code>: được gọi sau khi VNode của phần tử chứa <strong>và VNode của toàn bộ các phần tử con</strong> đã cập nhật.</p>
 </li>
-<li><p><code>unbind</code>: called only once, when the directive is unbound from the element.</p>
+<li><p><code>unbind</code>: chỉ được gọi một lần, khi directive được unbind khỏi phần tử.</p>
 </li>
 </ul>
-<p>We’ll explore the arguments passed into these hooks (i.e. <code>el</code>, <code>binding</code>, <code>vnode</code>, and <code>oldVnode</code>) in the next section.</p>
-<h2 id="Directive-Hook-Arguments"><a href="#Directive-Hook-Arguments" class="headerlink" title="Directive Hook Arguments"></a>Directive Hook Arguments</h2><p>Directive hooks are passed these arguments:</p>
+<p>Chúng ta sẽ tìm hiểu về các tham số được truyền vào các hàm hook này trong phần tiếp theo.</p>
+<h2 id="Tham-so-cua-cac-ham-hook"><a href="#Tham-so-cua-cac-ham-hook" class="headerlink" title="Tham số của các hàm hook"></a>Tham số của các hàm hook</h2><p>Các hàm hook cho directive được truyền vào các tham số sau đây:</p>
 <ul>
-<li><strong>el</strong>: The element the directive is bound to. This can be used to directly manipulate the DOM.</li>
-<li><strong>binding</strong>: An object containing the following properties.<ul>
-<li><strong>name</strong>: The name of the directive, without the <code>v-</code> prefix.</li>
-<li><strong>value</strong>: The value passed to the directive. For example in <code>v-my-directive=&quot;1 + 1&quot;</code>, the value would be <code>2</code>.</li>
-<li><strong>oldValue</strong>: The previous value, only available in <code>update</code> and <code>componentUpdated</code>. It is available whether or not the value has changed.</li>
-<li><strong>expression</strong>: The expression of the binding as a string. For example in <code>v-my-directive=&quot;1 + 1&quot;</code>, the expression would be <code>&quot;1 + 1&quot;</code>.</li>
-<li><strong>arg</strong>: The argument passed to the directive, if any. For example in <code>v-my-directive:foo</code>, the arg would be <code>&quot;foo&quot;</code>.</li>
-<li><strong>modifiers</strong>: An object containing modifiers, if any. For example in <code>v-my-directive.foo.bar</code>, the modifiers object would be <code>{ foo: true, bar: true }</code>.</li>
+<li><strong>el</strong>: Phần tử được directive bind vào. Tham số này có thể được dùng để thay đổi DOM một cách trực tiếp.</li>
+<li><strong>binding</strong>: Một object chứa những thuộc tính sau:<ul>
+<li><strong>name</strong>: Tên của directive, không có tiếp đầu ngữ <code>v-</code>.</li>
+<li><strong>value</strong>: Gái trị được truyền vào directive. Ví dụ với <code>v-my-directive=&quot;1 + 1&quot;</code> thì <code>value</code> sẽ là <code>2</code>.</li>
+<li><strong>oldValue</strong>: Giá trị trước đây, chỉ tồn tại trong các hook <code>update</code> và <code>componentUpdated</code>. <code>oldValue</code> sẽ luôn có cho dù giá trị có được thay đổi hay không.</li>
+<li><strong>expression</strong>: Biểu thức của binding dưới dạng chuỗi. Ví dụ với <code>v-my-directive=&quot;1 + 1&quot;</code>, thì <code>expression</code> sẽ là <code>&quot;1 + 1&quot;</code>.</li>
+<li><strong>arg</strong>: Tham số được truyền vào directive, nếu có. Ví dụ với <code>v-my-directive:foo</code> thì <code>arg</code> sẽ là <code>&quot;foo&quot;</code>.</li>
+<li><strong>modifiers</strong>: Một object chứa các modifier, nếu có. Ví dụ với <code>v-my-directive.foo.bar</code>, thì <code>modifiers</code> sẽ là <code>{ foo: true, bar: true }</code>.</li>
 </ul>
 </li>
-<li><strong>vnode</strong>: The virtual node produced by Vue’s compiler. See the <a href="../api/#VNode-Interface">VNode API</a> for full details.</li>
-<li><strong>oldVnode</strong>: The previous virtual node, only available in the <code>update</code> and <code>componentUpdated</code> hooks.</li>
+<li><strong>vnode</strong>: Vnode được trình biên dịch của Vue tạo ra. Xem thêm chi tiết tại <a href="../api/#Giao-dien-cua-VNode">VNode API</a>.</li>
+<li><strong>oldVnode</strong>: VNode trước đây, chỉ tồn tại trong các hook <code>update</code> và <code>componentUpdated</code>.</li>
 </ul>
-<p class="tip">Apart from <code>el</code>, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element’s <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset" target="_blank" rel="external">dataset</a>.</p>
+<p class="tip">Ngoài <code>el</code>, bạn nên coi là read-only (chỉ đọc) và đừng bao giờ chỉnh sửa các tham số này. Nếu muốn chia sẻ thông tin giữa các hook với nhau, bạn nên dùng <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset" target="_blank" rel="external">dataset</a>.</p>
 
-<p>An example of a custom directive using some of these properties:</p>
+<p>Sau đây là ví dụ về một directive tùy biến với các thuộc tính này:</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"hook-arguments-example"</span> <span class="attr">v-demo:foo.a.b</span>=<span class="string">"message"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.directive(<span class="string">'demo'</span>, &#123;</div><div class="line">  bind: <span class="function"><span class="keyword">function</span> (<span class="params">el, binding, vnode</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> s = <span class="built_in">JSON</span>.stringify</div><div class="line">    el.innerHTML =</div><div class="line">      <span class="string">'name: '</span>       + s(binding.name) + <span class="string">'&lt;br&gt;'</span> +</div><div class="line">      <span class="string">'value: '</span>      + s(binding.value) + <span class="string">'&lt;br&gt;'</span> +</div><div class="line">      <span class="string">'expression: '</span> + s(binding.expression) + <span class="string">'&lt;br&gt;'</span> +</div><div class="line">      <span class="string">'argument: '</span>   + s(binding.arg) + <span class="string">'&lt;br&gt;'</span> +</div><div class="line">      <span class="string">'modifiers: '</span>  + s(binding.modifiers) + <span class="string">'&lt;br&gt;'</span> +</div><div class="line">      <span class="string">'vnode keys: '</span> + <span class="built_in">Object</span>.keys(vnode).join(<span class="string">', '</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#hook-arguments-example'</span>,</div><div class="line">  data: &#123;</div><div class="line">    message: <span class="string">'hello!'</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.directive(<span class="string">'demo'</span>, &#123;</div><div class="line">  bind: <span class="function"><span class="keyword">function</span> (<span class="params">el, binding, vnode</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> s = <span class="built_in">JSON</span>.stringify</div><div class="line">    el.innerHTML =</div><div class="line">      <span class="string">'name: '</span>       + s(binding.name) + <span class="string">'&lt;br&gt;'</span> +</div><div class="line">      <span class="string">'value: '</span>      + s(binding.value) + <span class="string">'&lt;br&gt;'</span> +</div><div class="line">      <span class="string">'expression: '</span> + s(binding.expression) + <span class="string">'&lt;br&gt;'</span> +</div><div class="line">      <span class="string">'argument: '</span>   + s(binding.arg) + <span class="string">'&lt;br&gt;'</span> +</div><div class="line">      <span class="string">'modifiers: '</span>  + s(binding.modifiers) + <span class="string">'&lt;br&gt;'</span> +</div><div class="line">      <span class="string">'vnode keys: '</span> + <span class="built_in">Object</span>.keys(vnode).join(<span class="string">', '</span>)</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">new</span> Vue(&#123;</div><div class="line">  el: <span class="string">'#hook-arguments-example'</span>,</div><div class="line">  data: &#123;</div><div class="line">    message: <span class="string">'Cà rốt'</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 
 <div id="hook-arguments-example" v-demo:foo.a.b="message" class="demo"></div>
 <script>
@@ -836,16 +836,16 @@ Vue.directive('demo', {
 new Vue({
   el: '#hook-arguments-example',
   data: {
-    message: 'hello!'
+    message: 'Cà rốt'
   }
 })
 </script>
 
-<h2 id="Function-Shorthand"><a href="#Function-Shorthand" class="headerlink" title="Function Shorthand"></a>Function Shorthand</h2><p>In many cases, you may want the same behavior on <code>bind</code> and <code>update</code>, but don’t care about the other hooks. For example:</p>
+<h2 id="Cach-khai-bao-rut-gon"><a href="#Cach-khai-bao-rut-gon" class="headerlink" title="Cách khai báo rút gọn"></a>Cách khai báo rút gọn</h2><p>Trong nhiều trường hợp, có thể bạn muốn <code>bind</code> và <code>update</code> có chung một hành vi và không quan tâm đến các hook khác. Những lúc này bạn có thể dùng cách khai báo directive rút gọn, ví dụ:</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.directive(<span class="string">'color-swatch'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">el, binding</span>) </span>&#123;</div><div class="line">  el.style.backgroundColor = binding.value</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h2 id="Object-Literals"><a href="#Object-Literals" class="headerlink" title="Object Literals"></a>Object Literals</h2><p>If your directive needs multiple values, you can also pass in a JavaScript object literal. Remember, directives can take any valid JavaScript expression.</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-demo</span>=<span class="string">"&#123; color: 'white', text: 'hello!' &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.directive(<span class="string">'demo'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">el, binding</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(binding.value.color) <span class="comment">// =&gt; "white"</span></div><div class="line">  <span class="built_in">console</span>.log(binding.value.text)  <span class="comment">// =&gt; "hello!"</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h2 id="Truyen-object-truc-tiep"><a href="#Truyen-object-truc-tiep" class="headerlink" title="Truyền object trực tiếp"></a>Truyền object trực tiếp</h2><p>Nếu directive của bạn cần nhiều giá trị cùng một lúc, bạn có thể trực tiếp truyền vào một object. Nhớ là directive trong Vue có thể nhận bất kì biểu thức JavaScript hợp lệ nào.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-demo</span>=<span class="string">"&#123; color: 'white', text: 'Su hào' &#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">Vue.directive(<span class="string">'demo'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">el, binding</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(binding.value.color) <span class="comment">// =&gt; "white"</span></div><div class="line">  <span class="built_in">console</span>.log(binding.value.text)  <span class="comment">// =&gt; "Su hào"</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 
   
     <div class="guide-links">
