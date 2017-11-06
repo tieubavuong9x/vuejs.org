@@ -160,6 +160,7 @@
     <li><a href="https://kr.vuejs.org/v2/guide/team.html" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/v2/guide/team.html" class="nav-link" target="_blank">Português</a></li>
     <li><a href="https://fr.vuejs.org/v2/guide/team.html" class="nav-link" target="_blank">Français</a></li>
+    <li><a href="https://vi.vuejs.org/v2/guide/team.html" class="nav-link" target="_blank">Tiếng Việt</a></li>
   </ul>
 </li>
 
@@ -253,6 +254,7 @@
     <li><a href="https://kr.vuejs.org/v2/guide/team.html" class="nav-link" target="_blank">한국어</a></li>
     <li><a href="https://br.vuejs.org/v2/guide/team.html" class="nav-link" target="_blank">Português</a></li>
     <li><a href="https://fr.vuejs.org/v2/guide/team.html" class="nav-link" target="_blank">Français</a></li>
+    <li><a href="https://vi.vuejs.org/v2/guide/team.html" class="nav-link" target="_blank">Tiếng Việt</a></li>
   </ul>
 </li>
 
@@ -263,6 +265,9 @@
         <span>Nhà tài trợ bạch kim</span><br>
         <a href="https://stdlib.com" target="_blank" class="logo">
           <img src="/images/stdlib.png">
+        </a>
+        <a href="http://tooltwist.com/" target="_blank" class="logo">
+          <img src="/images/tooltwist.png">
         </a>
       </div>
       <a class="become-backer" href="/support-vuejs">
@@ -781,7 +786,7 @@
           <dd>
             <ul>
               <li v-for="repo in profile.reposOfficial">
-                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo }}</a>
+                <a :href="githubUrl('vuejs', repo)" target=_blank>{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -791,7 +796,7 @@
           <dd>
             <ul>
               <li v-for="repo in profile.reposPersonal">
-                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo }}</a>
+                <a :href="githubUrl(profile.github, repo)" target=_blank>{{ repo.name || repo }}</a>
               </li>
             </ul>
           </dd>
@@ -1158,7 +1163,10 @@
       github: 'phanan',
       twitter: 'notphanan',
       reposOfficial: [
-        'vuejs.org'
+        'vuejs.org', {
+          name: 'vi.vuejs.org',
+          url: 'https://github.com/vuejs-vn/vuejs.org'
+        }
       ],
       reposPersonal: [
         'vuequery', 'vue-google-signin-button'
@@ -1284,6 +1292,22 @@
       },
       links: [
         'https://atomaka.com/'
+      ]
+    },
+    {
+      name: 'Sarah Drasner',
+      city: 'Denver, CO, USA',
+      languages: ['en'],
+      work: {
+        role: 'Senior Cloud Developer Advocate',
+        org: 'Microsoft',
+        orgUrl: 'https://www.microsoft.com/'
+      },
+      github: 'sdras',
+      twitter: 'sarah_edo',
+      codepen: 'sdras',
+      reposPersonal: [
+        'intro-to-vue', 'vue-vscode-snippets', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'cda-locale', 'vue-weather-notifier'
       ]
     }
   ]))
@@ -1530,20 +1554,6 @@
       reposPersonal: [
         'translation-gang/ru.vuejs.org'
       ]
-    },
-    {
-      name: 'Sarah Drasner',
-      city: 'Denver, CO, Hoa Kỳ',
-      languages: ['en'],
-      work: {
-        role: 'Consultant'
-      },
-      github: 'sdras',
-      twitter: 'sarah_edo',
-      codepen: 'sdras',
-      reposPersonal: [
-        'intro-to-vue', 'vue-sublime-snippets', 'nuxt-type', 'animating-vue-workshop', 'vue-wine-label', 'vue-weather-notifier'
-      ]
     }
   ]
 
@@ -1634,6 +1644,9 @@
        * Generate a GitHub URL using a repo and a handle.
        */
       githubUrl: function (handle, repo) {
+        if (repo && repo.url) {
+          return repo.url
+        }
         if (repo && repo.indexOf('/') !== -1) {
           // If the repo name has a slash, it must be an organization repo.
           // In such a case, we discard the (personal) handle.
