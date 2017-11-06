@@ -1,5 +1,5 @@
 ---
-title: Render Functions & JSX
+title: Các hàm render & JSX
 type: guide
 order: 303
 ---
