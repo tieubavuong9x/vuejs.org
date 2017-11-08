@@ -4,11 +4,11 @@ type: guide
 order: 303
 ---
 
-## Basics
+## Cơ bản
 
-Vue recommends using templates to build your HTML in the vast majority of cases. There are situations however, where you really need the full programmatic power of JavaScript. That's where you can use the **render function**, a closer-to-the-compiler alternative to templates.
+Trong đại đa số các trường hợp, Vue khuyến khích sử dụng template để xây dựng HTML. Tuy nhiêu có một số trường hợp bạn cần dùng đến sức mạnh của JavaScript. Những lúc này bạn có thể dùng **hàm render** (render function), một giải pháp gần hơn với trình biên dịch, để thay thế cho template.
 
-Let's dive into a simple example where a `render` function would be practical. Say you want to generate anchored headings:
+Chúng ta hãy xem một ví dụ đơn giản trong đó một hàm `render` trở nên hữu ích. Chẳng hạn, bạn muốn tạo các tiêu đề `h1`, `h2`, `h3`… chứa liên kết, như sau:
 
 ``` html
 <h1>
@@ -18,13 +18,13 @@ Let's dive into a simple example where a `render` function would be practical. S
 </h1>
 ```
 
-For the HTML above, you decide you want this component interface:
+Từ đoạn HTML trên, bạn quyết định tạo một giao diện component như sau:
 
 ``` html
 <anchored-heading :level="1">Hello world!</anchored-heading>
 ```
 
-When you get started with a component that only generates a heading based on the `level` prop, you quickly arrive at this:
+Khi bắt đầu với một component chỉ tạo thẻ tiêu đề dựa trên prop `level` được truyền vào, bạn sẽ nhanh chóng đi đến một kết quả trông như thế này:
 
 ``` html
 <script type="text/x-template" id="anchored-heading-template">
@@ -61,16 +61,14 @@ Vue.component('anchored-heading', {
 })
 ```
 
-That template doesn't feel great. It's not only verbose, but we're duplicating `<slot></slot>` for every heading level and will have to do the same when we add the anchor element.
-
-While templates work great for most components, it's clear that this isn't one of them. So let's try rewriting it with a `render` function:
+Rõ ràng đây không phải là một template tốt. Chẳng những nó quá rườm rà, mà ở đây chúng ta còn lặp lại `<slot></slot>` cho mỗi level, và lại phải thực hiện một quá trình tương tự khi thêm phần tử `<a>`. Vì thế, hay thử viết lại với một hàm `render`:
 
 ``` js
 Vue.component('anchored-heading', {
   render: function (createElement) {
     return createElement(
-      'h' + this.level,   // tag name
-      this.$slots.default // array of children
+      'h' + this.level,   // tên thẻ
+      this.$slots.default // mảng các phần tử con
     )
   },
   props: {
@@ -82,35 +80,35 @@ Vue.component('anchored-heading', {
 })
 ```
 
-Much simpler! Sort of. The code is shorter, but also requires greater familiarity with Vue instance properties. In this case, you have to know that when you pass children without a `slot` attribute into a component, like the `Hello world!` inside of `anchored-heading`, those children are stored on the component instance at `$slots.default`. If you haven't already, **it's recommended to read through the [instance properties API](../api/#Instance-Properties) before diving into render functions.**
+Đơn giản hơn nhiều! Đại để thế. Code trở nên ngắn hơn, nhưng cũng đòi hỏi bạn phải quen thuộc hơn với các thuộc tính của đối tượng Vue. Trong trường hợp này, bạn phải biết rằng khi truyền các phần tử con không có thuộc tính `slot` vào trong một component, ví dụ `Hello world!` trong `anchored-heading`, các phần tử con này được chứa trong đối tượng component tại `$slots.default`. Chúng tôi khuyên bạn **nên đọc về [các API của các thuộc tính của đối tượng Vue](../api/#Thuoc-tinh-cua-doi-tuong) trước khi đi sâu nghiên cứu về các hàm render**.
 
-## Nodes, Trees, and the Virtual DOM
+## Node, tree, và virtual DOM
 
-Before we dive into render functions, it’s important to know a little about how browsers work. Take this HTML for example:
+Trước khi đi sâu vào các hàm render, ít nhiều kiến thức về cách hoạt động của trình duyệt là rất quan trọng. Ví dụ chúng ta có đoạn HTML sau:
 
 ```html
 <div>
-  <h1>My title</h1>
-  Some text content
-  <!-- TODO: Add tagline  -->
+  <h1>Bài đồng dao</h1>
+  Năm mới năm me
+  <!-- TODO: Hoàn thành bài đồng dao -->
 </div>
 ```
 
-When a browser reads this code, it builds a [tree of "DOM nodes"](https://javascript.info/dom-nodes) to help it keep track of everything, just as you might build a family tree to keep track of your extended family.
+Khi đọc đoạn code này, trình duyệt sẽ xây dựng cấu trúc dạng cây (DOM tree) bao gồm các ["DOM node"](https://javascript.info/dom-nodes) để giúp quản lí mọi thứ, tương tự như việc bạn xây dựng một cây gia phả để giữ thông tin về mọi người trong dòng họ vậy.
 
-The tree of DOM nodes for the HTML above looks like this:
+Cấu trúc cây của đoạn HTML trên sẽ giống như sau:
 
-![DOM Tree Visualization](/images/dom-tree.png)
+![Sơ đồ DOM tree](/images/dom-tree.png)
 
-Every element is a node. Every piece of text is a node. Even comments are nodes! A node is just a piece of the page. And as in a family tree, each node can have children (i.e. each piece can contain other pieces).
+Mỗi phần tử trên DOM tree là một node. Mỗi text là một node. Ngay cả comment cũng là node! Một node đơn giản chỉ là một "mảnh" trên trang web. Và cũng tương tự như trong một cây gia phả, mỗi node có thể có các node con (nghĩa là một mảnh có thể chứa các mảnh khác).
 
-Updating all these nodes efficiently can be difficult, but thankfully, you never have to do it manually. Instead, you tell Vue what HTML you want on the page, in a template:
+Cập nhật tất cả các node này một cách hiệu quả có thể là một việc khó khăn, nhưng may thay, bạn không bao giờ phải làm việc này một cách thủ công. Thay vào đó, chỉ cần báo cho Vue biết bạn muốn có HTML gì trên trang, trong một template:
 
 ```html
 <h1>{{ blogTitle }}</h1>
 ```
 
-Or a render function:
+hoặc trong một hàm render:
 
 ``` js
 render: function (createElement) {
@@ -118,43 +116,43 @@ render: function (createElement) {
 }
 ```
 
-And in both cases, Vue automatically keeps the page updated, even when `blogTitle` changes.
+Và trong cả hai trường hợp, Vue sẽ tự động giữ cho trang web được cập nhật, ngay cả khi `blogTitle` thay đổi.
 
-### The Virtual DOM
+### Virtual DOM
 
-Vue accomplishes this by building a **virtual DOM** to keep track of the changes it needs to make to the real DOM. Taking a closer look at this line:
+Vue làm được điều này nhờ vào việc xây dựng một **virtual DOM** (DOM ảo) để theo dõi tất cả những thay đổi cần thực hiện đối với DOM thật. Bạn hãy nhìn kĩ dòng này:
 
 ``` js
 return createElement('h1', this.blogTitle)
 ```
 
-What is `createElement` actually returning? It's not _exactly_ a real DOM element. It could perhaps more accurately be named `createNodeDescription`, as it contains information describing to Vue what kind of node it should render on the page, including descriptions of any child nodes. We call this node description a "virtual node", usually abbreviated to **VNode**. "Virtual DOM" is what we call the entire tree of VNodes, built by a tree of Vue components.
+Lệnh `createElement` ở đây thực chất là đang trả về cái gì? _Không hẳn_ là một element (phần tử) DOM thật sự. Nếu nói cho đúng, chúng ta có thể đặt lại tên cho hàm này một cách chính xác hơn là `tạoMôTảChoNode`, vì nó chứa những thông tin mô tả node mà Vue cần biết để render, bao gồm cả mô tả cho các node con. Chúng ta gọi mô tả này là một "virtual node" (node ảo), thường viết tắt là **VNode**. "Virtual DOM" là tên của toàn bộ một cây các Vnode, được xây dựng từ một cây các component Vue.
 
-## `createElement` Arguments
+## Các tham số của `createElement`
 
-The next thing you'll have to become familiar with is how to use template features in the `createElement` function. Here are the arguments that `createElement` accepts:
+Điều tiếp theo mà bạn cần thông thạo là cách dùng các tính năng của template trong hàm `createElement`. Đây là danh sách các tham số mà `createElement` nhận:
 
 ``` js
 // @returns {VNode}
 createElement(
   // {String | Object | Function}
-  // An HTML tag name, component options, or function
-  // returning one of these. Required.
+  // Một tên thẻ HTML, các tùy chọn cho component, hoặc một hàm
+  // trả về một trong những thứ này. Bắt buộc.
   'div',
 
   // {Object}
-  // A data object corresponding to the attributes
-  // you would use in a template. Optional.
+  // Một "data object" chứa dữ liệu tương ứng với các thuộc tính
+  // mà bạn muốn dùng trong một template. Không bắt buộc.
   {
-    // (see details in the next section below)
+    // (Xem chi tiết ở phần tiếp theo bên dưới)
   },
 
   // {String | Array}
-  // Children VNodes, built using `createElement()`,
-  // or using strings to get 'text VNodes'. Optional.
+  // Các vnode con, được tạo ra bằng cách dùng `createElement()`,
+  // hoặc dùng chuỗi để tạo các 'text VNode'. Không bắt buộc.
   [
-    'Some text comes first.',
-    createElement('h1', 'A headline'),
+    'Một ít text trước.',
+    createElement('h1', 'Một tiêu đề'),
     createElement(MyComponent, {
       props: {
         someProp: 'foobar'
@@ -164,50 +162,49 @@ createElement(
 )
 ```
 
-### The Data Object In-Depth
+### Chi tiết về data object
 
-One thing to note: similar to how `v-bind:class` and `v-bind:style` have special treatment in templates, they have their own top-level fields in VNode data objects. This object also allows you to bind normal HTML attributes as well as DOM properties such as `innerHTML` (this would replace the `v-html` directive):
+Một điểm cần lưu ý: tương tự với việc được [đối xử đặc biệt](class-and-style.html) trong template, `v-bind:class` và `v-bind:class` cũng có các field (trường) riêng ở top-level (cấp cao nhất) trong data object của Vnode. Object này cũng cho phép bạn bind (ràng buộc) các thuộc tính HTML thông thường cũng như các thuộc tính DOM như `innerHTML` (thay thế cho directive `v-html`):
 
 ``` js
 {
-  // Same API as `v-bind:class`
+  // Có cùng API với `v-bind:class`
   'class': {
     foo: true,
     bar: false
   },
-  // Same API as `v-bind:style`
+  // Có cùng API với `v-bind:style`
   style: {
     color: 'red',
     fontSize: '14px'
   },
-  // Normal HTML attributes
+  // Các thuộc tính HTML thông thường
   attrs: {
     id: 'foo'
   },
-  // Component props
+  // Các prop cho component
   props: {
     myProp: 'bar'
   },
-  // DOM properties
+  // Các thuộc tính DOM
   domProps: {
     innerHTML: 'baz'
   },
-  // Event handlers are nested under `on`, though
-  // modifiers such as in `v-on:keyup.enter` are not
-  // supported. You'll have to manually check the
-  // keyCode in the handler instead.
+  // Các hàm xử lí sự kiện được lồng vào bên trong `on`,
+  // tuy rằng modifier (như trong `v-on:keyup.enter`) không được
+  // hỗ trợ. Thay vào đó, bạn sẽ phải tự kiểm tra keyCode bên
+  // trong hàm.
   on: {
     click: this.clickHandler
   },
-  // For components only. Allows you to listen to
-  // native events, rather than events emitted from
-  // the component using `vm.$emit`.
+  // Chỉ dành riêng cho component. Cho phép bạn lắng nghe các
+  // sự kiện native, thay vì các sự kiện được phát ra từ component
+  // bằng cách sử dụng `vm.$emit`.
   nativeOn: {
     click: this.nativeClickHandler
   },
-  // Custom directives. Note that the binding's
-  // oldValue cannot be set, as Vue keeps track
-  // of it for you.
+  // Các directive tùy biến. Lưu ý là bạn không thể gán giá trị
+  // `oldValue`, vì Vue sẽ tự động quản lí giá trị này thay bạn.
   directives: [
     {
       name: 'my-custom-directive',
@@ -219,21 +216,21 @@ One thing to note: similar to how `v-bind:class` and `v-bind:style` have special
       }
     }
   ],
-  // Scoped slots in the form of
+  // Các scoped slot dưới dạng
   // { name: props => VNode | Array<VNode> }
   scopedSlots: {
     default: props => createElement('span', props.text)
   },
-  // The name of the slot, if this component is the
+  // Tên của slot, nếu component này là con của một component khác
   // child of another component
   slot: 'name-of-slot',
-  // Other special top-level properties
+  // Các thuộc tính top-level khác
   key: 'myKey',
   ref: 'myRef'
 }
 ```
 
-### Complete Example
+### Ví dụ hoàn chỉnh
 
 With this knowledge, we can now finish the component we started:
 
