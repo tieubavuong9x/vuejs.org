@@ -1426,6 +1426,8 @@
 <li><p><strong>Details:</strong></p>
 <p>Updates the element’s <code>innerHTML</code>. <strong>Note that the contents are inserted as plain HTML - they will not be compiled as Vue templates</strong>. If you find yourself trying to compose templates using <code>v-html</code>, try to rethink the solution by using components instead.</p>
 <p class="tip">Dynamically rendering arbitrary HTML on your website can be very dangerous because it can easily lead to <a href="https://en.wikipedia.org/wiki/Cross-site_scripting" target="_blank" rel="external">XSS attacks</a>. Only use <code>v-html</code> on trusted content and <strong>never</strong> on user-provided content.</p>
+
+<p class="tip">In <a href="../guide/single-file-components.html">single-file components</a>, <code>scoped</code> styles will not apply to content inside <code>v-html</code>, because that HTML is not processed by Vue’s template compiler. In you want to target <code>v-html</code> content with scoped CSS, you can instead use <a href="https://vue-loader.vuejs.org/en/features/css-modules.html" target="_blank" rel="external">CSS modules</a> or an additional, global <code>&lt;style&gt;</code> element with a manual scoping strategy such as BEM.</p>
 </li>
 <li><p><strong>Example:</strong></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-html</span>=<span class="string">"html"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
